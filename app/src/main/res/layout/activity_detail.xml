@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/Black_transparent_black_hex_4"
                 android:gravity="bottom"
                 android:orientation="horizontal"
                 android:padding="@dimen/padding_10">
@@ -50,9 +49,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:layout_weight="2"
-                android:background="@color/Black_transparent_black_hex_13"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_10">
+                android:background="@drawable/slide_bg"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -60,7 +58,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/description"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/Red_FireBrick" />
+                    android:textColor="@color/Red_FireBrick"
+                    android:padding="@dimen/padding_5" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -71,7 +70,8 @@
                     android:scrollbars="vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/Gray_DarkGray1" />
+                    android:textColor="@color/Gray_DarkGray1"
+                    android:padding="@dimen/padding_5" />
             </LinearLayout>
         </LinearLayout>
 

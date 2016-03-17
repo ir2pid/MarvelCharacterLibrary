@@ -32,7 +32,6 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
         super(MainActivity.class);
     }
 
-
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -41,7 +40,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     }
 
     @Test
-    public void testClickAtRecyclerViewPosition() {
+    public void testMainActivity() {
         // Perform a click on first element in the RecyclerView
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         sleep();
@@ -54,6 +53,6 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     }
 
     private void sleep() {
-        SystemClock.sleep(20000);//sleep to sync data, increase time if loading is slow
+        SystemClock.sleep(20000);//sleep 20 sec to sync data, increase time if loading is slow
     }
 }

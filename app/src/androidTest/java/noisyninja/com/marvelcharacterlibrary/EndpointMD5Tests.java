@@ -15,7 +15,6 @@ import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
-@RunWith(AndroidJUnit4.class)
 public class EndpointMD5Tests {
 
     @Before

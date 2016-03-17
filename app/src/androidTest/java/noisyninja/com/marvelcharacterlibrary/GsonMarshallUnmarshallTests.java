@@ -17,7 +17,6 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by ir2pid on 17/03/16.
  */
-@RunWith(AndroidJUnit4.class)
 public class GsonMarshallUnmarshallTests {
 
     Comic comic;

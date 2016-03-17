@@ -4,7 +4,9 @@ import android.os.SystemClock;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.test.ActivityInstrumentationTestCase2;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
@@ -20,7 +22,6 @@ public class SearchActivityTests extends ActivityInstrumentationTestCase2<Search
         super(SearchActivity.class);
     }
 
-
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -28,7 +29,7 @@ public class SearchActivityTests extends ActivityInstrumentationTestCase2<Search
     }
 
     @Test
-    public void testClickAtRecyclerViewPosition() {
+    public void testSearchActivity() {
         // Perform a click on first element in the RecyclerView
         onView(withId(R.id.editText)).perform(typeText("H"));
         sleep();
@@ -45,6 +46,6 @@ public class SearchActivityTests extends ActivityInstrumentationTestCase2<Search
     }
 
     private void sleep() {
-        SystemClock.sleep(25000);//sleep to sync data
+        SystemClock.sleep(20000);//sleep 20sec to sync data, increase time if loading is slow
     }
 }
