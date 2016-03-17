@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_96"
+        android:background="@color/Black_transparent_black_hex_8"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="@dimen/padding_30"
+            android:layout_height="@dimen/padding_30"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_10"
+            android:background="@drawable/ic_android_white"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/padding_64"
+            android:background="@color/sysTransparent"
+            android:hint="@string/search"
+            android:padding="@dimen/padding_20"
+            android:textColor="@color/Gray_LightGray"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/back"
+            android:layout_toLeftOf="@+id/clear" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="@dimen/padding_30"
+            android:layout_height="@dimen/padding_30"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|right"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible" />/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:focusableInTouchMode="false"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

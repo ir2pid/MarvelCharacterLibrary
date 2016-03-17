@@ -1,0 +1,29 @@
+<resources>
+    <integer name="int10">10</integer>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_25">25dp</dimen>
+    <dimen name="padding_30">30dp</dimen>
+    <dimen name="padding_35">35dp</dimen>
+    <dimen name="padding_40">40dp</dimen>
+    <dimen name="padding_45">45dp</dimen>
+    <dimen name="padding_50">50dp</dimen>
+    <dimen name="padding_55">55dp</dimen>
+    <dimen name="padding_64">64dp</dimen>
+    <dimen name="padding_72">64dp</dimen>
+    <dimen name="padding_84">64dp</dimen>
+    <dimen name="padding_96">64dp</dimen>
+    <dimen name="padding_128">128dp</dimen>
+    <dimen name="padding_144">128dp</dimen>
+    <dimen name="padding_172">128dp</dimen>
+    <dimen name="padding_196">128dp</dimen>
+    <dimen name="padding_256">256dp</dimen>
+    <dimen name="padding_324">324dp</dimen>
+    <dimen name="padding_512">512dp</dimen>
+    <dimen name="padding_768">768dp</dimen>
+
+</resources>
