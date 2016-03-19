@@ -65,8 +65,30 @@ public class NoisyNetwork {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                NoisyUtils.showToast(context, error.getLocalizedMessage());
                 pDialog.hide();
+
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.timeouterror),
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.authfailureerror),
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.servererror),
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.networkerror),
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.parseerror),
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.noconnectionerror),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.not_available),
+                            Toast.LENGTH_LONG).show();
+                }
             }
         }) {
             @Override
@@ -125,6 +147,9 @@ public class NoisyNetwork {
                             Toast.LENGTH_LONG).show();
                 } else if (error instanceof NoConnectionError) {
                     Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.noconnectionerror),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, NoisyUtils.getStringResource(context, R.string.not_available),
                             Toast.LENGTH_LONG).show();
                 }
 
