@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**
+ * Animation class, accepts two views, flips first view and shows the opposite view
  * Created by ir2pi on 12/29/2014.
  */
 public class FlipAnimation extends Animation {
@@ -36,6 +37,9 @@ public class FlipAnimation extends Animation {
         setInterpolator(new AccelerateDecelerateInterpolator());
     }
 
+    /**
+     * reverses flip if it's already flipped once
+     */
     public void reverse() {
         forward = false;
         View switchView = toView;

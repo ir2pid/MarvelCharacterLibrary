@@ -13,6 +13,7 @@ import noisyninja.com.marvelcharacterlibrary.R;
 
 
 /**
+ * Transformation class to return circular bitmaps of the passed image(unused)
  * Created by ir2pi on 5/1/2015.
  */
 
@@ -30,6 +31,12 @@ public class CircleTransform extends BitmapTransformation {
         return circleCrop(pool, toTransform);
     }
 
+    /**
+     * applies circle transformtion on the bitmap provided
+     * @param pool bitmap pool to be used for transformation
+     * @param source bitmap to be transformed
+     * @return circle transformed bitmap
+     */
     private static Bitmap circleCrop(BitmapPool pool, Bitmap source) {
         if (source == null) return null;
 

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
+ * Activity to provide zoomed view of an Image
  * Created by ir2pid on 17/03/16.
  */
 public class ZoomActivity extends Activity {

@@ -22,6 +22,7 @@ import noisyninja.com.marvelcharacterlibrary.models.ComicList;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
+ * Adapter to list characters returned by keyword search(SearchActivity)
  * Created by ir2pid on 16/03/16.
  */
 public class ComicsAdapter extends PagerAdapter {
@@ -46,26 +47,16 @@ public class ComicsAdapter extends PagerAdapter {
         return position;
     }
 
-   /* public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView = new ImageView(mContext);
-        //imageView.setLayoutParams(new Gallery.LayoutParams(300, 300));
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setLayoutParams(new Gallery.LayoutParams(120, 150));
-        String url = NoisyUtils.getImageName(mComicDataWrapper.getData().getResults().get(position).getThumbnail());
-        NoisyUtils.glideLoad(mContext, imageView, url);
-        return imageView;
-    }*/
-
-    @Override public float getPageWidth(final int position) { return(0.25f); }
+    @Override
+    public float getPageWidth(final int position) {
+        return (0.25f);
+    }
 
     @Override
     public Object instantiateItem(View view, final int position) {
         final ImageView imageView = new ImageView(mContext);
 
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-       // imageView.setLayoutParams(new ViewPager.LayoutParams(150, 120));
-
-        //imageView.setLayoutParams(ImageView.LayoutParams(120, 150));
         String url = NoisyUtils.getImageName(mComicDataWrapper.getData().getResults().get(position).getThumbnail());
         NoisyUtils.glideLoad(mContext, imageView, url);
 
@@ -90,13 +81,16 @@ public class ComicsAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(View collection, int position, Object view)
-    {
-        ((ViewPager)collection).removeView((ImageView)view);
+    public void destroyItem(View collection, int position, Object view) {
+        ((ViewPager) collection).removeView((ImageView) view);
 
     }
 
-
+    /**
+     * shows the image zoomed in  a popup(dialog themed activity)
+     * @param context context of calling activity
+     * @param pos position of image in adapter
+     */
     private void showPopup(Context context, int pos) {
         Intent intent = new Intent(context, ZoomActivity.class);
         String url = NoisyUtils.getImageName(mComicDataWrapper.getData().getResults().get(pos).getThumbnail());

@@ -14,6 +14,7 @@ import noisyninja.com.marvelcharacterlibrary.models.CharacterDataWrapper;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
+ * Adapter to list all search results(SearchActivity)
  * Created by ir2pid on 13/03/16.
  */
 public class SearchCharacterListAdapter extends RecyclerView.Adapter<SearchCharacterListAdapter.ViewHolder> {
@@ -36,7 +37,12 @@ public class SearchCharacterListAdapter extends RecyclerView.Adapter<SearchChara
         return viewHolder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     *
+     * @param holder view holder which will contain view
+     * @param position position of item in array
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String name = mCharacterDataWrapper.getData().getResults().get(position).getName();
@@ -49,12 +55,20 @@ public class SearchCharacterListAdapter extends RecyclerView.Adapter<SearchChara
         NoisyUtils.makeAnimation(holder.mImageView, Techniques.BounceIn);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     *
+     * @return count of array
+     */
     @Override
     public int getItemCount() {
         return mCharacterDataWrapper.getData().getResults().size();
     }
 
+    /**
+     *  viewholder for list rows
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public interface OnItemClickListener {

@@ -15,6 +15,10 @@ import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
+/**
+ * UI tests SearchActivityTests and DetailActivity
+ * Created by ir2pid on 17/03/16.
+ */
 public class SearchActivityTests extends ActivityInstrumentationTestCase2<SearchActivity> {
 
 

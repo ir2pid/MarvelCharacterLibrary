@@ -14,6 +14,7 @@ import noisyninja.com.marvelcharacterlibrary.models.*;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
+ * Adapter to list all characters(MainActivity)
  * Created by ir2pid on 13/03/16.
  */
 public class CharacterListAdapter extends RecyclerView.Adapter<CharacterListAdapter.ViewHolder> {
@@ -36,7 +37,12 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterListAdap
         return viewHolder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     *
+     * @param holder   view holder which will contain view
+     * @param position position of item in array
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String name = mCharacterDataWrapper.getData().getResults().get(position).getName();
@@ -48,7 +54,11 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterListAdap
         NoisyUtils.makeAnimation(holder.mImageView, Techniques.SlideInLeft);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     *
+     * @return count of array
+     */
     @Override
     public int getItemCount() {
         return mCharacterDataWrapper.getData().getResults().size();
@@ -59,6 +69,7 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterListAdap
         public interface OnItemClickListener {
             void onItemClick(noisyninja.com.marvelcharacterlibrary.models.Character item);
         }
+
         private OnItemClickListener listener;
         private final TextView mTextview;
         private final ImageView mImageView;

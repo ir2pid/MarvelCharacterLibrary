@@ -15,9 +15,10 @@ import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 import static org.junit.Assert.assertNotNull;
 
 /**
+ * test for gson serializing and deserializing
  * Created by ir2pid on 17/03/16.
  */
-public class GsonMarshallUnmarshallTests {
+public class GsonSerializeDeserializeTests {
 
     Comic comic;
 
@@ -37,7 +38,7 @@ public class GsonMarshallUnmarshallTests {
     }
 
     @Test
-    public void testMarshallUnmarshall() {
+    public void testSerializeDeserialize() {
 
         String toJson = NoisyUtils.getToJson(comic);
 

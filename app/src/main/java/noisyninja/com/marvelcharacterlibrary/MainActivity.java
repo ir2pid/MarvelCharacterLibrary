@@ -25,6 +25,9 @@ import noisyninja.com.marvelcharacterlibrary.models.Character;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyNetwork;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
+/**
+ * Entry point, Activity lists all characters on marvel database
+ */
 public class MainActivity extends Activity implements INetworkCallback, View.OnClickListener {
 
     RecyclerView mRecyclerView;
@@ -48,11 +51,20 @@ public class MainActivity extends Activity implements INetworkCallback, View.OnC
     }
 
 
+    /**
+     * fetches first batch of characters in foreground, and passes control to background for subsequent fetching
+     */
     private void init() {
 
         NoisyNetwork.get(mContext, NoisyUtils.getCharacterURI(0), Requests.GET_CHARACTERS, this);
     }
 
+    /**
+     * handles network callbacks, both background and foreground calls
+     *
+     * @param o          response
+     * @param requestTag tag of network call to cast response
+     */
     @Override
     public void response(String o, String requestTag) {
         switch (NoisyConstants.Requests.valueOf(requestTag.toUpperCase())) {
@@ -74,11 +86,16 @@ public class MainActivity extends Activity implements INetworkCallback, View.OnC
                 break;
             }
             default: {
-                NoisyUtils.showDialog(this, NoisyConstants.INVALID_NETWORK_REQUEST, NoisyConstants.INVALID_NETWORK_REQUEST, true);
+                NoisyUtils.showDialog(this, NoisyConstants.INVALID_NETWORK_REQUEST, NoisyConstants.INVALID_NETWORK_REQUEST);
             }
         }
     }
 
+    /**
+     * handles click events of recycler view items
+     *
+     * @param view view which is clicked
+     */
     @Override
     public void onClick(View view) {
 
@@ -90,18 +107,26 @@ public class MainActivity extends Activity implements INetworkCallback, View.OnC
         startActivity(intent);
     }
 
+    /**
+     * fetches subsequent characters in background
+     */
     private void syncAll() {
         int total = mCharacterDataWrapper.getData().getTotal();
         int size = mCharacterDataWrapper.getData().getResults().size();
         int offset = mCharacterDataWrapper.getData().getOffset();
         if (total > size) {
             getActionBar().setSubtitle("fetched:" + size + " of " + total + " offset: " + offset);
-            NoisyNetwork.getBackground(mContext, NoisyUtils.getCharacterURI(mCharacterDataWrapper.getData().getResults().size()+1), Requests.GET_ALL_CHARACTERS, this);
+            NoisyNetwork.getBackground(mContext, NoisyUtils.getCharacterURI(mCharacterDataWrapper.getData().getResults().size() + 1), Requests.GET_ALL_CHARACTERS, this);
         } else {
             getActionBar().setSubtitle("Synced all characters");
         }
     }
 
+    /**
+     * merges already characters with new fetched ones
+     *
+     * @param characterDataWrapper new fetched characters
+     */
     private void merge(CharacterDataWrapper characterDataWrapper) {
         mCharacterDataWrapper.getData().getResults().addAll(characterDataWrapper.getData().getResults());
         mCharacterDataWrapper.getData().setOffset(characterDataWrapper.getData().getOffset());

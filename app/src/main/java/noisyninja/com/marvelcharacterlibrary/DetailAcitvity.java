@@ -22,6 +22,7 @@ import noisyninja.com.marvelcharacterlibrary.utils.NoisyNetwork;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
+ * Activity to show character detail
  * Created by ir2pid on 16/03/16.
  */
 public class DetailAcitvity extends Activity implements INetworkCallback {
@@ -36,6 +37,13 @@ public class DetailAcitvity extends Activity implements INetworkCallback {
     ViewPager gallery;
     String comicsURI;
 
+    /**
+     * returns a new Intent to call the activity
+     *
+     * @param context   context of calling activity
+     * @param character character data to be shown
+     * @return Intent to show this class
+     */
     public static Intent getIntentInstance(Context context, Character character) {
         mCharacter = character;
         NoisyUtils.logD(NoisyUtils.getToJson(mCharacter));
@@ -73,12 +81,23 @@ public class DetailAcitvity extends Activity implements INetworkCallback {
 
     }
 
+    /**
+     * fetches first batch of comics in foreground, and passes control to background for subsequent fetching
+     *
+     * @param resURI uri of comic resources
+     */
     private void init(String resURI) {
 
         NoisyNetwork.get(mContext, NoisyUtils.getComicsURI(resURI, 0), NoisyConstants.Requests.GET_COMICS, this);
 
     }
 
+    /**
+     * fetches subsequent comics in background
+     *
+     * @param resURI uri of comic resources
+     * @param offset offset of next set of comics
+     */
     private void syncAll(String resURI, int offset) {
 
         int total = mComicDataWrapper.getData().getTotal();
@@ -88,54 +107,49 @@ public class DetailAcitvity extends Activity implements INetworkCallback {
         }
     }
 
-    private void merge(CharacterDataWrapper characterDataWrapper) {
-        mComicDataWrapper.getData().getResults().addAll(mComicDataWrapper.getData().getResults());
-        mComicDataWrapper.getData().setOffset(mComicDataWrapper.getData().getOffset());
-        mComicDataWrapper.getData().setCount(mComicDataWrapper.getData().getCount() + characterDataWrapper.getData().getCount());
+    /**
+     * merges already recieved comics with new fetched ones
+     *
+     * @param comicDataWrapper new fetched comics
+     */
+    private void merge(ComicDataWrapper comicDataWrapper) {
+        mComicDataWrapper.getData().getResults().addAll(comicDataWrapper.getData().getResults());
+        mComicDataWrapper.getData().setOffset(comicDataWrapper.getData().getOffset());
+        mComicDataWrapper.getData().setCount(mComicDataWrapper.getData().getCount() + comicDataWrapper.getData().getCount());
     }
 
+    /**
+     * handles network callbacks, both background and foreground calls
+     *
+     * @param o          response
+     * @param requestTag tag of network call to cast response
+     */
     @Override
     public void response(String o, String requestTag) {
         switch (NoisyConstants.Requests.valueOf(requestTag.toUpperCase())) {
             case GET_COMICS: {
 
                 mComicDataWrapper = (ComicDataWrapper) NoisyUtils.getFromJson(o, ComicDataWrapper.class);
-                gallery.setAdapter(new ComicsAdapter(this, mComicDataWrapper));
 
-               /* gallery.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-                    public void onPageSelected(int pos) {
-                        showPopup(pos);
-                        Log.d(DetailAcitvity.class.getSimpleName(), "click pos:" + pos);
-
-                    }
-
-                    public void onPageScrolled(int arg0, float arg1, int arg2) {
-                        // TODO Auto-generated method stub
-
-                    }
-
-                    public void onPageScrollStateChanged(int arg0) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });*/
-
-                gallery.invalidate();
-                syncAll(comicsURI, mComicDataWrapper.getData().getResults().size()+1);
+                if(mComicDataWrapper.getData().getResults().size() == 0){
+                    notAvailable.setVisibility(View.VISIBLE);
+                }else {
+                    gallery.setAdapter(new ComicsAdapter(this, mComicDataWrapper));
+                    gallery.invalidate();
+                    syncAll(comicsURI, mComicDataWrapper.getData().getResults().size() + 1);
+                }
                 break;
             }
             case GET_ALL_COMICS: {
 
-                CharacterDataWrapper tCharacterDataWrapper = (CharacterDataWrapper) NoisyUtils.getFromJson(o, CharacterDataWrapper.class);
-                merge(tCharacterDataWrapper);
-                //mRecyclerView.setAdapter(new CharacterListAdapter(mCharacterDataWrapper, this));
+                ComicDataWrapper tComicDataWrapper = (ComicDataWrapper) NoisyUtils.getFromJson(o, ComicDataWrapper.class);
+                merge(tComicDataWrapper);
                 gallery.invalidate();
-                syncAll(comicsURI, mComicDataWrapper.getData().getResults().size()+1);
+                syncAll(comicsURI, mComicDataWrapper.getData().getResults().size() + 1);
                 break;
             }
             default: {
-                NoisyUtils.showDialog(this, NoisyConstants.INVALID_NETWORK_REQUEST, NoisyConstants.INVALID_NETWORK_REQUEST, true);
+                NoisyUtils.showDialog(this, NoisyConstants.INVALID_NETWORK_REQUEST, NoisyConstants.INVALID_NETWORK_REQUEST);
             }
         }
     }

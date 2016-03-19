@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 /**
+ * App constants go here
  * Created by ir2pid on 15/03/16.
  */
 public class NoisyConstants {
@@ -24,6 +25,7 @@ public class NoisyConstants {
     public static String PARAM_OFFSET = "&offset=";
     public static String PARAM_STARTSWITH = "&nameStartsWith=";
     public static String PARAM_LIMIT100 = "&limit=100";
+    public static String PARAM_LIMIT1 = "&limit=1";
 
     public static long ANIMATION_TIME_700 = 700;    // Sleep for some time
     public static String LOADING = "(LOADING)";

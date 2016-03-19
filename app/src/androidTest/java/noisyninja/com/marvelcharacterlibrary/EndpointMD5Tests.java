@@ -13,7 +13,9 @@ import org.junit.runner.RunWith;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
+ * test for creation of all endpoint with proper stamp and md5 hashing
+ *
+ * Created by ir2pid on 17/03/16.
  */
 public class EndpointMD5Tests {
 

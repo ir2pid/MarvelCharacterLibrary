@@ -25,6 +25,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.core.AllOf.allOf;
 
+/**
+ * UI tests MainActivity and DetailActivity
+ * Created by ir2pid on 17/03/16.
+ */
 public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActivity> {
 
 

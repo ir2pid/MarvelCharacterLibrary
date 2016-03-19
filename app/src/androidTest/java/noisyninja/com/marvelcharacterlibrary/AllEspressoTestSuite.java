@@ -8,6 +8,7 @@ import org.junit.runners.AllTests;
 import org.junit.runners.Suite;
 
 /**
+ * suite contains all UI espresso tests
  * Created by ir2pid on 18/03/16.
  */
 

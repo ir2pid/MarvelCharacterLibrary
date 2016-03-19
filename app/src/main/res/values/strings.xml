@@ -7,5 +7,20 @@
     <string name="Comics">Comics </string>
     <string name="not_available">Not Available!</string>
     <string name="search">Search...</string>
+    <string name="timeouterror">TimeoutError</string>
+    <string name="noconnectionerror">NoConnectionError</string>
+    <string name="authfailureerror">AuthFailureError</string>
+    <string name="servererror">ServerError</string>
+    <string name="networkerror">NetworkError</string>
+    <string name="parseerror">ParseError</string>
 
+
+
+
+    TimeoutError
+    NoConnectionError
+    AuthFailureError
+    ServerError
+    NetworkError
+    ParseError
 </resources>

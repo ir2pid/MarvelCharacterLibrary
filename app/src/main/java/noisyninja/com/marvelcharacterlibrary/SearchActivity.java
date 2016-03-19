@@ -22,6 +22,7 @@ import noisyninja.com.marvelcharacterlibrary.utils.NoisyNetwork;
 import noisyninja.com.marvelcharacterlibrary.utils.NoisyUtils;
 
 /**
+ * To lookup characters based on alphabet search
  * Created by ir2pid on 17/03/16.
  */
 public class SearchActivity extends Activity implements INetworkCallback, View.OnClickListener {
@@ -72,10 +73,10 @@ public class SearchActivity extends Activity implements INetworkCallback, View.O
             public void afterTextChanged(Editable s) {
 
                 mSearchText = s.toString();
-                if(mSearchText.length()>0){
+                if (mSearchText.length() > 0) {
                     clear.setVisibility(View.VISIBLE);
                     search();
-                }else {
+                } else {
                     clear.setVisibility(View.INVISIBLE);
                 }
             }
@@ -90,6 +91,12 @@ public class SearchActivity extends Activity implements INetworkCallback, View.O
     }
 
 
+    /**
+     * handles network callbacks, both background and foreground calls
+     *
+     * @param o          response
+     * @param requestTag tag of network call to cast response
+     */
     @Override
     public void response(String o, String requestTag) {
         switch (NoisyConstants.Requests.valueOf(requestTag.toUpperCase())) {
@@ -98,7 +105,7 @@ public class SearchActivity extends Activity implements INetworkCallback, View.O
                 mCharacterDataWrapper = (CharacterDataWrapper) NoisyUtils.getFromJson(o, CharacterDataWrapper.class);
                 mRecyclerView.setAdapter(new SearchCharacterListAdapter(mCharacterDataWrapper, this));
                 mRecyclerView.invalidate();
-                syncAll(mCharacterDataWrapper);
+                syncAll();
                 break;
             }
             case GET_ALL_CHARACTERS: {
@@ -106,35 +113,50 @@ public class SearchActivity extends Activity implements INetworkCallback, View.O
                 CharacterDataWrapper tCharacterDataWrapper = (CharacterDataWrapper) NoisyUtils.getFromJson(o, CharacterDataWrapper.class);
                 merge(tCharacterDataWrapper);
                 mRecyclerView.invalidate();
-                syncAll(mCharacterDataWrapper);
+                syncAll();
                 break;
             }
             default: {
-                NoisyUtils.showDialog(this, NoisyConstants.INVALID_NETWORK_REQUEST, NoisyConstants.INVALID_NETWORK_REQUEST, true);
+                NoisyUtils.showDialog(this, NoisyConstants.INVALID_NETWORK_REQUEST, NoisyConstants.INVALID_NETWORK_REQUEST);
             }
         }
     }
 
+    /**
+     * to initiate character search with keyword
+     */
     private void search() {
         NoisyNetwork.get(mContext, NoisyUtils.getSearchCharacterURI(0, mSearchText), NoisyConstants.Requests.GET_CHARACTERS, this);
     }
 
-    private void syncAll(CharacterDataWrapper characterDataWrapper) {
 
-        int total = characterDataWrapper.getData().getTotal();
-        int size = characterDataWrapper.getData().getResults().size();
+    /**
+     * fetches subsequent characters in background
+     */
+    private void syncAll() {
+
+        int total = mCharacterDataWrapper.getData().getTotal();
+        int size = mCharacterDataWrapper.getData().getResults().size();
         if (total > size) {
-            NoisyNetwork.getBackground(mContext, NoisyUtils.getSearchCharacterURI(characterDataWrapper.getData().getResults().size()+1, mSearchText), NoisyConstants.Requests.GET_ALL_CHARACTERS, this);
+            NoisyNetwork.getBackground(mContext, NoisyUtils.getSearchCharacterURI(mCharacterDataWrapper.getData().getResults().size() + 1, mSearchText), NoisyConstants.Requests.GET_ALL_CHARACTERS, this);
         }
     }
 
-
+    /**
+     * merges already recieved characters with new fetched ones
+     *
+     * @param characterDataWrapper new fetched characters
+     */
     private void merge(CharacterDataWrapper characterDataWrapper) {
         mCharacterDataWrapper.getData().getResults().addAll(characterDataWrapper.getData().getResults());
         mCharacterDataWrapper.getData().setOffset(characterDataWrapper.getData().getOffset());
         mCharacterDataWrapper.getData().setCount(mCharacterDataWrapper.getData().getCount() + characterDataWrapper.getData().getCount());
     }
 
+    /**
+     * handles recycler view item clicks
+     * @param view
+     */
     @Override
     public void onClick(View view) {
 
