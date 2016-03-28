@@ -2,8 +2,13 @@
 
 A demo project to utilize Mavel's API
 
-screenshots:
+apk:
+<a href="https://github.com/ir2pid/MarvelCharacterLibrary/blob/master/app-debug.apk">
+<img border="0" alt="Apk" src="https://github.com/ir2pid/MarvelCharacterLibrary/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png" width="100" height="100">
 
+
+
+screenshots:
 
 <img src="https://github.com/ir2pid/MarvelCharacterLibrary/blob/master/screenshots/Screenshot_2016-03-19-15-36-19.png" width="270" height="480" />
 <img src="https://github.com/ir2pid/MarvelCharacterLibrary/blob/master/screenshots/Screenshot_2016-03-19-14-26-21.png" width="270" height="480" />
