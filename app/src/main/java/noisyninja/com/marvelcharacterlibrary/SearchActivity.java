@@ -138,7 +138,7 @@ public class SearchActivity extends Activity implements INetworkCallback, View.O
         int total = mCharacterDataWrapper.getData().getTotal();
         int size = mCharacterDataWrapper.getData().getResults().size();
         if (total > size) {
-            NoisyNetwork.getBackground(mContext, NoisyUtils.getSearchCharacterURI(mCharacterDataWrapper.getData().getResults().size() + 1, mSearchText), NoisyConstants.Requests.GET_ALL_CHARACTERS, this);
+            NoisyNetwork.getBackground(mContext, NoisyUtils.getSearchCharacterURI(mCharacterDataWrapper.getData().getResults().size(), mSearchText), NoisyConstants.Requests.GET_ALL_CHARACTERS, this);
         }
     }
 

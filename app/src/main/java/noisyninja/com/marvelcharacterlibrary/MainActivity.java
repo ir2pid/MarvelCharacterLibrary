@@ -116,7 +116,7 @@ public class MainActivity extends Activity implements INetworkCallback, View.OnC
         int offset = mCharacterDataWrapper.getData().getOffset();
         if (total > size) {
             getActionBar().setSubtitle("fetched:" + size + " of " + total + " offset: " + offset);
-            NoisyNetwork.getBackground(mContext, NoisyUtils.getCharacterURI(mCharacterDataWrapper.getData().getResults().size() + 1), Requests.GET_ALL_CHARACTERS, this);
+            NoisyNetwork.getBackground(mContext, NoisyUtils.getCharacterURI(mCharacterDataWrapper.getData().getResults().size()), Requests.GET_ALL_CHARACTERS, this);
         } else {
             getActionBar().setSubtitle("Synced all characters");
         }

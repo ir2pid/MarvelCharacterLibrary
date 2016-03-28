@@ -136,7 +136,7 @@ public class DetailAcitvity extends Activity implements INetworkCallback {
                 }else {
                     gallery.setAdapter(new ComicsAdapter(this, mComicDataWrapper));
                     gallery.invalidate();
-                    syncAll(comicsURI, mComicDataWrapper.getData().getResults().size() + 1);
+                    syncAll(comicsURI, mComicDataWrapper.getData().getResults().size());
                 }
                 break;
             }
